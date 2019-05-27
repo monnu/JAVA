@@ -1,16 +1,21 @@
-node{
-   stage(
-   'SCM Checkout'
-   )
-   {
-   git
-  ' https://github.com/monnu/JAVA'
-  }
-  stage(
-  'Complie-Package'
-  )
-  {
-  sh 'mvn package'
-  }
-  }
-  
+        pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+              echo 'This is a Pipeline.'
+             }
+        }
+        stage('Archive') {
+         steps {
+           dir ('/target') {
+           archive '*.jar'
+         }  
+      } 
+    }
+        
+        
+        
+      
+    }
+}
